@@ -1,6 +1,5 @@
 package com.uploadfilestoserver;
 
-import com.uploadfilestoserver.RemoteServer.ServerOne;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -41,7 +40,7 @@ public class App {
         Retrofit retrofit = HttpClient.getServerOneClient(API_BASE_URL);
 
         // Create a very simple REST adapter which points the GitHub API endpoint.
-        ServerOne client =  retrofit.create(ServerOne.class);
+        ServerInterface client =  retrofit.create(ServerInterface.class);
 
 
         // Fetch public ssos
@@ -69,7 +68,7 @@ public class App {
         Retrofit retrofit = HttpClient.getServerOneClient(API_BASE_URL);
 
         // Create a very simple REST adapter which points the GitHub API endpoint.
-        ServerOne client =  retrofit.create(ServerOne.class);
+        ServerInterface client =  retrofit.create(ServerInterface.class);
 
 
         // Fetch private profile.
@@ -95,7 +94,7 @@ public class App {
 
     public static void callCreateSupport() {
         // create upload service client
-        ServerOne service = ServiceGenerator.createService(ServerOne.class);
+        ServerInterface service = ServiceGenerator.createService(ServerInterface.class);
 
         // set some files
         File file1 = FileUtils.getFile(FILE1);

@@ -1,4 +1,4 @@
-package com.uploadfilestoserver.RemoteServer;
+package com.uploadfilestoserver;
 
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
@@ -8,7 +8,7 @@ import retrofit2.http.*;
 import java.util.List;
 
 
-public interface ServerOne {
+public interface ServerInterface {
     @GET("v1/external_ssos/search")
     @Headers("X-API-TOKEN: "+ resources.Properties.X_API_TOKEN)
     Call<String> getPublicSsos();
