@@ -97,13 +97,13 @@ public class App {
         // create upload service client
         ServerOne service = ServiceGenerator.createService(ServerOne.class);
 
-        // use the FileUtils to get the actual file by uri
+        // set some files
         File file1 = FileUtils.getFile(FILE1);
         File file2 = FileUtils.getFile(FILE2);
 
         // create RequestBody instance from file
-        RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/png"), file1);
-        RequestBody requestFile2 = RequestBody.create(MediaType.parse("image/png"), file2);
+        RequestBody requestFile1 = RequestBody.create(MediaType.parse("application/octet-stream"), file1);
+        RequestBody requestFile2 = RequestBody.create(MediaType.parse("application/octet-stream"), file2);
 
         // MultipartBody.Part is used to send also the actual file name
         // ! An empty list would end in a sent email with no attachments.
@@ -114,10 +114,11 @@ public class App {
 
 //        RequestBody description = RequestBody.create(MultipartBody.FORM, "test from Cristian");
 
-        // finally, execute the request
+        // create request
         Call<ResponseBody> call = service.createSupport(
                 ACCESS_TOKEN, "test from Cristian", "TYPE1", supportFiles);
 
+        //call request async
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call,

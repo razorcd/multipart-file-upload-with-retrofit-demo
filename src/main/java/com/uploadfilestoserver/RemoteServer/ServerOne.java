@@ -6,11 +6,10 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 import java.util.List;
-import java.util.Properties;
 
 
 public interface ServerOne {
-    @GET("v1/external_ssos/search?accessToken=public&action=index&controller=public&locale=en")
+    @GET("v1/external_ssos/search")
     @Headers("X-API-TOKEN: "+ resources.Properties.X_API_TOKEN)
     Call<String> getPublicSsos();
 
