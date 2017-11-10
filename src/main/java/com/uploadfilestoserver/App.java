@@ -85,7 +85,7 @@ public class App {
         ServerOne service = ServiceGenerator.createService(ServerOne.class);
 
         // use the FileUtils to get the actual file by uri
-        File file = FileUtils.getFile("pom.xml");
+        File file = FileUtils.getFile("src/main/java/resources/dummy.txt");
 
         // create RequestBody instance from file
         RequestBody requestFile = RequestBody.create(
@@ -95,15 +95,13 @@ public class App {
 
         // MultipartBody.Part is used to send also the actual file name
         MultipartBody.Part supportFiles =
-                MultipartBody.Part.createFormData("picture", file.getName(), requestFile);
+                MultipartBody.Part.createFormData(file.getName(), file.getName(), requestFile);
 
-        RequestBody description = RequestBody.create(MultipartBody.FORM, "hello, this is description speaking");
+//        RequestBody description = RequestBody.create(MultipartBody.FORM, "test from Cristian");
 
         // finally, execute the request
         Call<ResponseBody> call = service.createSupport(ACCESS_TOKEN, X_API_TOKEN, "multipart/form-data",
-                description, "TYPE1", supportFiles);
-
-
+                "test from Cristian", "TYPE1", supportFiles);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override

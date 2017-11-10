@@ -19,12 +19,13 @@ public interface ServerOne {
     );
 
     @Multipart
-    @POST("/v1/clients/profile/support")
+    @POST("portal-mediator/services/v1/clients/profile/support")
+//    @POST("v1/clients/profile/support")
     Call<ResponseBody> createSupport(
             @Query("accessToken") String accessToken,
             @Header("X-API-TOKEN") String xApiToken,
-            @Header("content-type") String contentType,
-            @Part("supportBody") RequestBody supportBody,
+            @Header("Content-Type") String contentType,
+            @Part("supportBody") String supportBody,
             @Part("supportType") String supportType,
             @Part MultipartBody.Part supportFiles
     );
