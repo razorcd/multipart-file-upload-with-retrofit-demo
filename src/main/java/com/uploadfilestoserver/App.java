@@ -16,7 +16,6 @@ import java.util.List;
 public class App {
 
     private static final String API_BASE_URL = Properties.API_BASE_URL;
-    private static final String X_API_TOKEN = Properties.X_API_TOKEN;
     private static final String ACCESS_TOKEN = Properties.ACCESS_TOKEN;
     private static final String FILE1 = "src/main/java/resources/dummy1.txt";
     private static final String FILE2 = "src/main/java/resources/dummy2.txt";
@@ -34,7 +33,7 @@ public class App {
 //        System.out.println(".");
 //
         callCreateSupport();
-        Thread.sleep(4000L);
+//        Thread.sleep(4000L);
         System.out.println(".");
     }
 
@@ -46,7 +45,7 @@ public class App {
 
 
         // Fetch public ssos
-        Call<String> callSsos = client.getPublicSsos(X_API_TOKEN);
+        Call<String> callSsos = client.getPublicSsos();
 
         // Execute the call asynchronously. Get a positive or negative callback.
         callSsos.enqueue(new Callback<String>() {
@@ -74,7 +73,7 @@ public class App {
 
 
         // Fetch private profile.
-        Call<String> callProfile = client.getprofile(ACCESS_TOKEN, X_API_TOKEN);
+        Call<String> callProfile = client.getprofile(ACCESS_TOKEN);
 
         // Execute the call asynchronously. Get a positive or negative callback.
         callProfile.enqueue(new Callback<String>() {
@@ -116,8 +115,8 @@ public class App {
 //        RequestBody description = RequestBody.create(MultipartBody.FORM, "test from Cristian");
 
         // finally, execute the request
-        Call<ResponseBody> call = service.createSupport(ACCESS_TOKEN, X_API_TOKEN, "multipart/form-data",
-                "test from Cristian", "TYPE1", supportFiles);
+        Call<ResponseBody> call = service.createSupport(
+                ACCESS_TOKEN, "test from Cristian", "TYPE1", supportFiles);
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override

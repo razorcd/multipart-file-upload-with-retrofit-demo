@@ -6,26 +6,26 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 import java.util.List;
+import java.util.Properties;
+
 
 public interface ServerOne {
     @GET("v1/external_ssos/search?accessToken=public&action=index&controller=public&locale=en")
-    Call<String> getPublicSsos(
-            @Header("X-API-TOKEN") String xApiToken
-    );
+    @Headers("X-API-TOKEN: "+ resources.Properties.X_API_TOKEN)
+    Call<String> getPublicSsos();
 
-    @POST("v1/clients/profile")
+    @GET("v1/clients/profile")
+    @Headers("X-API-TOKEN: "+ resources.Properties.X_API_TOKEN)
     Call<String> getprofile(
-            @Query("accessToken") String accessToken,
-            @Header("X-API-TOKEN") String xApiToken
+            @Query("accessToken") String accessToken
     );
 
     @Multipart
 //    @POST("portal-mediator/services/v1/clients/profile/support")
     @POST("v1/clients/profile/support")
+    @Headers({"Content-Type: multipart/form-data", "X-API-TOKEN: "+ resources.Properties.X_API_TOKEN})
     Call<ResponseBody> createSupport(
             @Query("accessToken") String accessToken,
-            @Header("X-API-TOKEN") String xApiToken,
-            @Header("Content-Type") String contentType,
             @Part("supportBody") String supportBody,
             @Part("supportType") String supportType,
             @Part List<MultipartBody.Part> supportFiles
