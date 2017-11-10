@@ -1,5 +1,8 @@
 package resources;
 
+/**
+ * Clone this file to "Properties.java" and fill in the parameters.
+/**
 public class Properties_example {
     public static final String API_BASE_URL = "http://";
     public static final String X_API_TOKEN = "";
